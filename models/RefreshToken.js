@@ -5,11 +5,12 @@ const refreshTokenSchema = new Schema({
     type: String,
     required: true,
   },
-  // userId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'user',
-  // },
-  createdAt: {type: Date, expires: '1440m', default: Date.now},
+  userId: {
+    type: String,
+    required: true,
+  },
+  createdAt: {type: Date, expires: '1h', default: Date.now},
 });
 
+refreshTokenSchema.index({createdAt: 1}, {expireAfterSeconds: 3600});
 export default mongoose.model('refreshToken', refreshTokenSchema);
