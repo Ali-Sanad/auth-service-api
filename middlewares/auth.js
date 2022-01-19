@@ -10,7 +10,6 @@ import {createAccessToken, setJWTAccessTokenCookie} from '../utils/helper.js';
 export const authenticateMiddleWare = async (req, res, next) => {
   const refreshToken = req.cookies['refresh-token'];
   const accessToken = req.cookies['access-token'];
-  console.log('req.cookies', req.cookies);
   // const accessToken = req.header('Authorization').replace('Bearer ', '');
   if (!refreshToken && !accessToken) {
     return next();

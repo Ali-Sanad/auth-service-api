@@ -7,7 +7,7 @@ export const createRefreshToken = (user) => {
     {userId: user?.id},
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: '1h',
+      expiresIn: '7d',
     }
   );
 
@@ -18,24 +18,26 @@ export const createAccessToken = (user) => {
     {userId: user?.id},
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: '20s',
+      expiresIn: '15m',
     }
   );
 
   return {accessToken};
 };
 
+// 3600 * 24 * 7 * 1000 = 7days in milliseconds
 export const setJWTRefreshTokenCookie = (refreshToken, res) => {
   res.cookie('refresh-token', refreshToken, {
-    maxAge: 3600 * 1000,
+    maxAge: 3600 * 24 * 7 * 1000,
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production' ? true : false,
     path: '/',
   });
 };
+// 15 * 60* 1000 = 15 minutes in milliseconds
 export const setJWTAccessTokenCookie = (accessToken, res) => {
   res.cookie('access-token', accessToken, {
-    maxAge: 20 * 1000,
+    maxAge: 15 * 60 * 1000,
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production' ? true : false,
     path: '/',

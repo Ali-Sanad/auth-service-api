@@ -9,8 +9,8 @@ const refreshTokenSchema = new Schema({
     type: String,
     required: true,
   },
-  createdAt: {type: Date, expires: '1h', default: Date.now},
+  createdAt: {type: Date, expires: '7d', default: Date.now},
 });
 
-refreshTokenSchema.index({createdAt: 1}, {expireAfterSeconds: 3600});
+refreshTokenSchema.index({createdAt: 1}, {expireAfterSeconds: 3600 * 24 * 7});
 export default mongoose.model('refreshToken', refreshTokenSchema);
