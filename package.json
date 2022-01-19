@@ -1,5 +1,5 @@
 {
-  "name": "auth-service",
+  "name": "auth-service-api",
   "description": "auth service to authenticate and authorize users",
   "version": "1.0.0",
   "type": "module",
