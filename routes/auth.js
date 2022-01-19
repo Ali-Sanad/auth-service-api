@@ -1,9 +1,16 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import {check} from 'express-validator';
-import {authenticateMiddleWare} from '../middlewares/auth.js';
+import {authenticateMiddleWare, verifyRole} from '../middlewares/auth.js';
 
-import {signup, login, me, refreshToken, logout} from '../controllers/auth.js';
+import {
+  signup,
+  login,
+  me,
+  refreshToken,
+  logout,
+  getAllUsers,
+} from '../controllers/auth.js';
 dotenv.config();
 const router = express.Router();
 
@@ -37,5 +44,8 @@ router.get('/refresh-token', refreshToken);
 
 //invalidate Token
 router.post('/log-out', logout);
+
+// get all users by admin
+router.get('/users', authenticateMiddleWare, verifyRole.isAdmin, getAllUsers);
 
 export default router;

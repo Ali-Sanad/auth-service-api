@@ -80,7 +80,13 @@ const login = async (req, res) => {
     setJWTRefreshTokenCookie(refreshToken, res);
     setJWTAccessTokenCookie(accessToken, res);
 
-    res.status(200).json({userId: user?.id, accessToken});
+    res.status(200).json({
+      accessToken,
+      userId: user?.id,
+      name: user?.name,
+      email: user?.email,
+      role: user?.role,
+    });
   } catch (err) {
     console.log(err.message);
     res.status(500).send('Server error');
@@ -98,9 +104,10 @@ const me = async (req, res) => {
   }
   try {
     res.status(200).json({
-      name: user.name,
-      email: user.email,
-      userId: user.id,
+      userId: user?.id,
+      name: user?.name,
+      email: user?.email,
+      role: user?.role,
     });
   } catch (err) {
     console.log(err.message);
@@ -183,4 +190,13 @@ const logout = async (req, res) => {
   res.status(200).send(true);
 };
 
-export {signup, login, me, refreshToken, logout};
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password -refreshTokens');
+    res.status(200).json(users);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server error');
+  }
+};
+export {signup, login, me, refreshToken, logout, getAllUsers};

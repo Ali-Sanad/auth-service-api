@@ -7,6 +7,15 @@ import RefreshToken from '../models/RefreshToken.js';
 
 import {createAccessToken, setJWTAccessTokenCookie} from '../utils/helper.js';
 
+export const verifyRole = {
+  isAdmin: (req, res, next) => {
+    if (req.role === 'admin') {
+      next();
+    } else {
+      res.status(403).json({errors: [{msg: 'Not Authorized'}]});
+    }
+  },
+};
 export const authenticateMiddleWare = async (req, res, next) => {
   const refreshToken = req.cookies['refresh-token'];
   const accessToken = req.cookies['access-token'];
@@ -18,6 +27,7 @@ export const authenticateMiddleWare = async (req, res, next) => {
   try {
     const data = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
     req.userId = data.userId;
+    req.role = data.role;
     return next();
   } catch {}
 
@@ -58,6 +68,7 @@ export const authenticateMiddleWare = async (req, res, next) => {
   const token = createAccessToken(user);
   setJWTAccessTokenCookie(token.accessToken, res);
   req.userId = user?.id;
+  req.role = user?.role;
 
   //access token has been refreshed in silent mode
 
