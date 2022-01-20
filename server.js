@@ -3,7 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import swaggerUI from 'swagger-ui-express';
-import connectToDB from './database-connection.js';
+import connectToDB from './config/database-connection.js';
 import docs from './swagger.json';
 import authRoutes from './routes/auth.js';
 const app = express();

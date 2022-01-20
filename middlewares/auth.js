@@ -17,9 +17,15 @@ export const verifyRole = {
   },
 };
 export const authenticateMiddleWare = async (req, res, next) => {
+  let accessToken;
+  if (req.cookies['access-token']) {
+    accessToken = req.cookies['access-token'];
+  } else {
+    accessToken = req.header('Authorization')?.replace('Bearer ', '');
+  }
+
   const refreshToken = req.cookies['refresh-token'];
-  const accessToken = req.cookies['access-token'];
-  // const accessToken = req.header('Authorization').replace('Bearer ', '');
+
   if (!refreshToken && !accessToken) {
     return next();
   }
@@ -31,6 +37,7 @@ export const authenticateMiddleWare = async (req, res, next) => {
     return next();
   } catch {}
 
+  // if the access token is invalid, then we need to check if the refresh token is valid or not
   if (!refreshToken) {
     return next();
   }

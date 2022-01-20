@@ -47,11 +47,6 @@
       "post": {
         "tags": ["Auth"],
         "description": "Login user in system",
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -87,7 +82,7 @@
         "description": "Get user info",
         "security": [
           {
-            "basicAuth": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -104,7 +99,7 @@
         "description": "Logout user in system",
         "security": [
           {
-            "basicAuth": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -120,7 +115,7 @@
         "description": "Refresh token",
         "security": [
           {
-            "basicAuth": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -136,7 +131,7 @@
         "description": "Get all users",
         "security": [
           {
-            "basicAuth": []
+            "bearerAuth": []
           }
         ],
         "responses": {

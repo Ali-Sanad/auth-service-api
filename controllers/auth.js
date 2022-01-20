@@ -122,7 +122,12 @@ const refreshToken = async (req, res) => {
     return res.status(401).json({errors: [{msg: 'Unauthorized'}]});
   }
 
-  let data = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+  let data;
+  try {
+    data = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+  } catch {
+    return res.status(401).json({errors: [{msg: 'Unauthorized'}]});
+  }
 
   //at this point  we have  a valid refresh token
 
@@ -153,10 +158,6 @@ const refreshToken = async (req, res) => {
 
 const logout = async (req, res) => {
   const refreshToken = req.cookies['refresh-token'];
-  const accessToken = req.cookies['access-token'];
-  if (!refreshToken) {
-    return res.status(401).json({errors: [{msg: 'Unauthorized'}]});
-  }
 
   //check the token is valid or not
   let data;

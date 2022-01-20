@@ -43,7 +43,7 @@ router.get('/me', authenticateMiddleWare, me);
 router.get('/refresh-token', refreshToken);
 
 //invalidate Token
-router.post('/log-out', logout);
+router.post('/log-out', authenticateMiddleWare, logout);
 
 // get all users by admin
 router.get('/users', authenticateMiddleWare, verifyRole.isAdmin, getAllUsers);
