@@ -1,6 +1,7 @@
-## _Auth Service API_
+## _Auth Service API_  # [Live API :rocket:](https://auth-service-api-101.herokuapp.com/)
 
 A simple Express auth service API to authenticate and authorize users
+
 
 ### Technologies
 
