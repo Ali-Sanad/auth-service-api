@@ -5,6 +5,16 @@
     "description": "A simple Express auth service API to authenticate and authorize users",
     "version": "1.0.0"
   },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    },
+    {
+      "url": "https://auth-service-api-101.herokuapp.com",
+      "description": "Heroku server"
+    }
+  ],
 
   "paths": {
     "/api/v1/auth/signup": {

@@ -7,7 +7,7 @@ import connectToDB from './database-connection.js';
 import docs from './swagger.json';
 import authRoutes from './routes/auth.js';
 const app = express();
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 connectToDB();
 //enable cors for all routes
