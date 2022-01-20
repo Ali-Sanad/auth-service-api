@@ -13,20 +13,21 @@ connectToDB();
 //enable cors for all routes
 app.use(cors());
 
-// for bodyparsing using both json and urlencoding
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb', extended: true}));
-app.use(cookieParser());
-app.use(morgan('dev'));
-
 app.get('/', (req, res) => {
-  res.send(`
+  res.status(200).send(`
   <br> <br> <br> <br>
   <h1 style="text-align:center">
     Auth Service API <a href="/docs"> Docs </a>
   </h1><hr>
     `);
 });
+
+// for bodyparsing using both json and urlencoding
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
+app.use(morgan('dev'));
+
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(docs));
 
 //@define routes
