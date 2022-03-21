@@ -4,7 +4,11 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import swaggerUI from 'swagger-ui-express';
 import connectToDB from './config/database-connection.js';
-import docs from './swagger.json';
+import {readFile} from 'fs/promises';
+// import docs from './swagger.json';
+const docs = JSON.parse(
+  await readFile(new URL('./swagger.json', import.meta.url))
+);
 import authRoutes from './routes/auth.js';
 const app = express();
 const PORT = process.env.PORT || 3000;

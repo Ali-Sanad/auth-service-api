@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node --experimental-json-modules server.js",
-    "dev": "nodemon --experimental-json-modules server.js"
+    "start": "node  server.js",
+    "dev": "nodemon  server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
