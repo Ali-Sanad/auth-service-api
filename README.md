@@ -1,4 +1,4 @@
-## _Auth Service API_  # [Live API :rocket:](https://auth-service-api-101.herokuapp.com/)
+## _Auth Service API_  # [Live API :rocket:](https://auth-service-api-101.glitch.me/)
 
 A simple Express auth service API to authenticate and authorize users
 
@@ -10,7 +10,7 @@ A simple Express auth service API to authenticate and authorize users
 - MongoDB
 - Swagger
 
-#### 🔨 How To Use
+#### 🔨 How To Use Locally
 
 ```
 npm install
